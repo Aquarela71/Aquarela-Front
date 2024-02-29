@@ -1,1 +1,0 @@
-# Aquarela-Front
