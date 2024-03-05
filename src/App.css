@@ -18,3 +18,23 @@
 .font-dm{
     font-family: "DM Serif Display", serif;
 }
+
+/* Masonry */
+
+.my-masonry-grid {
+  display: flex;
+  margin-left: 6px;
+  margin-right: 6px;
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 8px;
+  padding-right: 8px;
+  background-clip: padding-box;
+  margin-bottom: 25px;
+}
+
+body{
+ background-color: rgb(241, 241, 241);
+}
