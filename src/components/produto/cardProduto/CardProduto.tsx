@@ -5,26 +5,27 @@ import { AuthContext } from "../../../contexts/AuthContext";
 //import Categoria from '../../../model/Categoria'
 //import ListaCategoria from '../../Categoria/listaCategoria'
 import placeholder from "../../../assets/Images/placeholder.png";
+import { toastAlerta } from "../../../util/toastAlerta";
 
 interface CardProdutoProps {
   post: Produto;
 }
 
-// const {usuario} = useContext(AuthContext);
-
 function CardProduto({ post }: CardProdutoProps) {
+  const {usuario} = useContext(AuthContext);
+
+  const handleAdicionarAoCarrinho = () => {
+    toastAlerta('Produto adicionado ao carrinho', 'info');
+  };
   return (
     <div className="border-noturno border flex flex-col rounded-xl overflow-hidden my-4 mb-6 shadow-lg">
       <div>
-        <div className="flex w-full bg-ver py-2 px-4 items-center gap-4 ">
-          <h3 className="text-2xl text-eggnog font-dm font-semibold uppercase mx-2 truncate m-5">
+        <div className="flex w-full bg-ver py-4 px-4 items-center gap-4 ">
+        <h4 className="text-2xl text-eggnog font-dm font-semibold uppercase mx-2 truncate">
             {post.nome}
-          </h3>
+          </h4> 
         </div>
         <div className="p-4 bg-gray-200">
-          {/* <h4 className="text-2xl text-eggnog font-dm font-semibold uppercase mx-2 truncate">
-            {post.nome}
-          </h4> */}
           <div className="rounded-2xl">
           <img
             src={post.foto || placeholder}
@@ -49,7 +50,7 @@ function CardProduto({ post }: CardProdutoProps) {
             </p>
             <p className="py-2">
               <span className="font-bold uppercase text-noturno">DESCRIÇÃO: </span>
-              <span className="font-archivo text-lg">
+              <span className="text-2xl text-ver text-archivo h-full break-words">
                 {" "}
                 {post.descricao}
               </span>
@@ -58,13 +59,13 @@ function CardProduto({ post }: CardProdutoProps) {
               <span className="font-bold uppercase text-noturno">PREÇO: </span>
               <span className="font-archivo text-xl">
                 {" "}
-                {post.preco}
+                R${post.preco}
               </span>
             </p>
           </div>
         </div>
       </div>
-      {/* {usuario.tipo === "Vendedor"? */}
+      {usuario.tipo === "vendedor"?
       <div className="flex">
         <Link
           to={`/editarProduto/${post.id}`}
@@ -79,9 +80,11 @@ function CardProduto({ post }: CardProdutoProps) {
           <button>Deletar</button>
         </Link>
       </div>
-      {/*:
-      <div></div>
-} */}
+      :
+      <div>
+          <button onClick={handleAdicionarAoCarrinho} className="w-full font-barlow text-xl text-white bg-ver hover:bg-blue-950 flex items-center justify-center py-2">Adicionar ao carrinho</button>
+      </div>
+}
     </div>
   );
 }

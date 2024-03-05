@@ -16,7 +16,7 @@ function CardCategorias({ categoria }: CardCategoriaProps) {
       </div>
       <div>
         <h4 className="ml-4 font-barlow font-bold text-xl uppercase">Descrição:</h4>
-        <p className="ml-6 mb-6 text-2xl text-ver text-archivo h-full truncate">
+        <p className="mx-6 mb-6 text-2xl text-ver text-archivo h-full break-words">
           {categoria.descricaocat}
         </p>
       </div>

@@ -4,6 +4,7 @@ import Usuario from '../../model/Usuario'
 import { cadastrarUsuario } from '../../services/Service'
 import './Cadastro.css'
 import { RotatingLines } from 'react-loader-spinner'
+import { toastAlerta } from '../../util/toastAlerta'
 
 function Cadastro() {
 
@@ -52,6 +53,15 @@ function Cadastro() {
     })
   }
 
+
+  function atualizarEstados(e: ChangeEvent< HTMLSelectElement>) {
+    setUsuario({
+      ...usuario,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
   async function cadastrarNovoUsuario(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
     setIsLoading(true)
@@ -59,102 +69,95 @@ function Cadastro() {
 
       try {
         await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuarioResposta)
-        alert('Usuário cadastrado com sucesso')
+        toastAlerta('Usuário cadastrado com sucesso', 'sucesso')
         setIsLoading(false)
       } catch (error) {
-        alert('Erro ao cadastrar o Usuário')
+        toastAlerta('Erro ao cadastrar o Usuário', 'erro')
       }
       setIsLoading(false)
     } else {
-      alert('Dados inconsistentes. Verifique as informações de cadastro.')
-      setUsuario({ ...usuario, senha: "" }) // Reinicia o campo de Senha
-      setConfirmaSenha("")                  // Reinicia o campo de Confirmar Senha
+      toastAlerta('Dados inconsistentes. Verifique as informações de cadastro.', 'info')
+      setUsuario({ ...usuario, senha: "" }) 
+      setConfirmaSenha("")                  
     }
   }
 
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold">
-        <div className="fundoCadastro hidden lg:block"></div>
-        <form className='flex justify-center items-center flex-col w-2/3 gap-3' onSubmit={cadastrarNovoUsuario}>
-          <h2 className='text-slate-900 text-5xl'>Cadastrar</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold ">
+        <div className="fundoCadastro hidden lg:block border-r-2 border-ver"></div>
+        <form className='flex justify-center items-center rounded-xl p-6 flex-col w-2/3 gap-3 ' onSubmit={cadastrarNovoUsuario}>
+          <h2 className='text-ver text-5xl font-dm'>Cadastrar</h2>
           <div className="flex flex-col w-full">
-            <label htmlFor="nome">Nome</label>
+            <label htmlFor="nome"  className="ml-2 font-barlow text-lar text-xl" >Nome</label>
             <input
               type="text"
               id="nome"
               name="nome"
               placeholder="Nome"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-4 border-ver rounded-xl p-2 font-barlow text-lg
+              focus:border-ver focus:outline-none focus:text-ver"
               value={usuario.nome} 
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="usuario">Usuario</label>
+            <label htmlFor="usuario"  className="ml-2 font-barlow text-lar text-xl">Email</label>
             <input
               type="text"
               id="usuario"
               name="usuario"
-              placeholder="Usuario"
-              className="border-2 border-slate-700 rounded p-2"
+              placeholder="Email"
+              className="border-4 border-ver rounded-xl p-2 font-barlow text-lg
+              focus:border-ver focus:outline-none focus:text-ver"
               value={usuario.usuario} 
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
+                    
           <div className="flex flex-col w-full">
-            <label htmlFor="foto">Foto</label>
-            <input
-              type="text"
-              id="foto"
-              name="foto"
-              placeholder="Foto"
-              className="border-2 border-slate-700 rounded p-2"
-              value={usuario.fotous} 
-              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            />
-          </div>
-          <div className="flex flex-col w-full">
-            <label htmlFor="tipo">Tipo</label>
-            <input
-              type="text"
+            <label htmlFor="tipo" className="ml-2 font-barlow text-lar text-xl">Tipo</label>
+            <select
               id="tipo"
               name="tipo"
-              placeholder="Tipo"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-4 border-ver rounded-xl p-2 font-barlow text-gray-400 bg-white text-lg
+              focus:border-ver focus:outline-none focus:text-ver"
               value={usuario.tipo} 
-              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            />
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => atualizarEstados(e)}
+>
+            <option value="" className='font-archivo'>Selecione o Tipo de Conta</option>
+             <option value={"vendedor"}>Vendedor</option>
+             <option value={"comprador"}>Comprador</option> 
+            </select>
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="senha">Senha</label>
+            <label htmlFor="senha" className="ml-2 font-barlow text-lar text-xl">Senha</label>
             <input
               type="password"
               id="senha"
               name="senha"
               placeholder="Senha"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-4 border-ver rounded-xl p-2 font-barlow text-lg
+              focus:border-ver focus:outline-none focus:text-ver"
               value={usuario.senha} 
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="confirmarSenha">Confirmar Senha</label>
+            <label htmlFor="confirmarSenha" className="ml-2 font-barlow text-lar text-xl">Confirmar Senha</label>
             <input
               type="password"
               id="confirmarSenha"
               name="confirmarSenha"
               placeholder="Confirmar Senha"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-4 border-ver rounded-xl p-2 font-barlow text-lg
+              focus:border-ver focus:outline-none focus:text-ver"
               value={confirmaSenha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
             />
           </div>
-          <div className="flex justify-around w-full gap-8">
-            <button className='rounded text-white bg-red-400 hover:bg-red-700 w-1/2 py-2' onClick={back}>
-              Cancelar
-            </button>
-            <button className='rounded text-white bg-indigo-400 hover:bg-indigo-900 w-1/2 py-2' type='submit'>
+          <div className="flex justify-center w-full gap-8">
+            <button className='rounded-xl text-xl font-barlow text-white bg-lar hover:bg-ros w-1/2 py-2 cursor-pointer flex justify-center' type='submit'>
             {isLoading ? <RotatingLines
             strokeColor="white"
             strokeWidth="5"

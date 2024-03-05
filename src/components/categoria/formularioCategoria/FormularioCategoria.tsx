@@ -72,11 +72,11 @@ function FormularioCategoria() {
           }
         })
 
-        alert('Categoria cadastrada com sucesso')
+        toastAlerta('Categoria cadastrada com sucesso', 'sucesso')
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          toastAlerta('O token expirou, favor logar novamente', 'info')
           handleLogout()
         } else {
           toastAlerta('Erro ao cadastrado a Categoria', 'erro')
@@ -103,37 +103,44 @@ function FormularioCategoria() {
 
   return (
     <div className="container flex flex-col items-center justify-center mx-auto">
-      <h1 className="text-4xl text-center my-8">
+      <h1 className="text-4xl text-center my-8 font-dm text-ver">
         {id === undefined ? 'Cadastre uma nova Categoria' : 'Editar categoria'}
       </h1>
 
       <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovaCategoria}>
         <div className="flex flex-col gap-2">
-          <label htmlFor="descricao">Descrição da Categoria</label>
-          <input
-            type="text"
-            placeholder="Descrição"
-            name='descricaocat'
-            className="border-2 border-slate-700 rounded p-2"
-            value={categoria.descricaocat}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-          />
 
-  <label htmlFor="tipo">Tipo de Categoria</label>
+
+  <label htmlFor="tipo" className='ml-2 mt-6 font-barlow text-xl text-lar font-semibold'>Nome da Categoria</label>
           <input
             type="text"
-            placeholder="Tipo"
-            className="border-2 border-slate-700 rounded p-2"
+            placeholder="Nome"
+            className="border-4 border-ver rounded-xl p-1 pl-2 font-barlow text-lg
+            focus:border-ver focus:outline-none focus:text-ver"
             name='tipo'
             value={categoria.tipo}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
+          <label htmlFor="descricao" className='ml-2 font-barlow text-xl text-lar font-semibold'>Descrição da Categoria</label>
+          <input
+            type="text"
+            placeholder="Descrição"
+            name='descricaocat'
+            className="border-4 border-ver rounded-xl p-1 pl-2 font-barlow text-lg
+            focus:border-ver focus:outline-none focus:text-ver"
+            value={categoria.descricaocat}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+          />
         </div>
+        
+        <div className='flex justify-center'>
         <button
-          className="rounded text-slate-100 bg-indigo-400 hover:bg-indigo-800 w-1/2 py-2 mx-auto block"
+          className='rounded-xl text-xl font-barlow text-white bg-lar hover:bg-ros w-1/2 py-2 cursor-pointer'
           type="submit" >
           {id === undefined ? 'Cadastrar' : 'Editar'}
         </button>
+        </div>
+
       </form>
     </div>
   );
