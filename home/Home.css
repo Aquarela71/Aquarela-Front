@@ -1,0 +1,24 @@
+.pyy{
+    padding:100px;
+}
+
+.imgdef{
+    height: 400px;
+    width: 290px;
+    background-size: cover;
+}
+
+.imgTitulo{
+    background-image: url('../../assets/img/maos.png');
+    background-size: cover;
+    height: 200px;
+}
+
+.carrossel-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+  
