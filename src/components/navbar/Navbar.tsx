@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { toastAlerta } from "../../util/toastAlerta";
 import { Article } from "@phosphor-icons/react";
 import logo from "../../assets/Logo2.png";
+import "./Navbar.css"
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,7 @@ const Navbar: React.FC = () => {
         </div>
        
 
-        <div className="hidden lg:flex uppercase text-center" style={{ marginLeft: '-64px' }}>
+        <div className="hidden lg:flex uppercase text-center marg">
           <Link
             to="/home"
             className="text-4xl font-dm font-bold uppercase"

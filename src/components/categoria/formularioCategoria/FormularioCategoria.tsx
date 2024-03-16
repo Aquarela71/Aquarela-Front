@@ -73,6 +73,7 @@ function FormularioCategoria() {
         })
 
         toastAlerta('Categoria cadastrada com sucesso', 'sucesso')
+        retornar()
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
@@ -88,7 +89,7 @@ function FormularioCategoria() {
   }
 
   function retornar() {
-    navigate("/categorias/cadastrar")
+    navigate("/categoria")
   }
 
   useEffect(() => {

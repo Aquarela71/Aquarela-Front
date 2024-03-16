@@ -122,7 +122,14 @@ function ListaProdutos() {
           </Link>
         </div>
         :
-        <div></div>
+        <div className="flex justify-end mx-14 mb-4">
+          <Link
+            to="/carrinho"
+            className="block px-4 py-2 bg-lar rounded-xl font-barlow text-xl text-eggnog hover:bg-ros uppercase"
+          >
+            Carrinho
+          </Link>
+        </div>
         }
 
         <Masonry

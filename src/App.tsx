@@ -16,21 +16,22 @@ import DeletarCategoria from './components/categoria/deletarCategoria/DeletarCat
 import FormularioProduto from './components/produto/formularioProduto/FormularioProduto';
 import DeletarProduto from './components/produto/deletarProduto/DeletarProduto';
 import SobreNos from './pages/sobre/SobreNos';
-import ContatoCard from './components/contato/Contato';
-
-
+//import ContatoCard from './components/contato/Contato';
+import Carrinho from './components/carrinho/Carrinho';
+import { CarrinhoProvider } from './contexts/CarrinhoContext';
 
 
 function App() {
   return (
     <>
 
-    <AuthProvider>
-    <ToastContainer />
-        <BrowserRouter>
-          <Navbar />
-          <div className='min-h-[80vh]'>
-            <Routes>
+        <AuthProvider>
+        <CarrinhoProvider> 
+          <ToastContainer />
+          <BrowserRouter>
+            <Navbar />
+            <div className='min-h-[80vh]'>
+              <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
@@ -45,11 +46,13 @@ function App() {
               <Route path="/deletarProduto/:id" element={<DeletarProduto />} />
               <Route path="/listacategoria" element={<ListaCategorias/>} />
               <Route path="/sobreNos" element={<SobreNos/>} />
-            </Routes>
-          </div>
-          <Footer />
-        </BrowserRouter>
-        </AuthProvider>
+              <Route path="/carrinho" element={<Carrinho/>} />
+              </Routes>
+            </div>
+            <Footer />
+          </BrowserRouter>
+        </CarrinhoProvider>
+      </AuthProvider>
     </>
   );
 }
