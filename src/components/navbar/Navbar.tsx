@@ -80,7 +80,12 @@ const Navbar: React.FC = () => {
               >
                 Categorias
               </Link>
-
+              <Link
+                to="/carrinho"
+                className="block px-4 py-2 hover:bg-eggnog hover:text-ver"
+              >
+                Carrinho
+              </Link>
               <Link
                 to="/login"
                 className="block px-4 py-2 hover:bg-eggnog hover:text-ver"
