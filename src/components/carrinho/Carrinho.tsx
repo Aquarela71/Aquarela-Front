@@ -30,7 +30,7 @@ const Carrinho: React.FC = () => {
           </h2>
         </div>
         <div>
-          <div className=" grid-cols-3 w-full gap-4 flex justify-around font-playfair font-bold text-lar text-xl my-4 mt-4 pb-2">
+          <div className=" grid-cols-3 w-full gap-4 flex justify-around font-playfair shadow-text-bottom font-bold text-lar text-xl my-4 mt-4 pb-2">
             <div className="col-span-2">Produto</div>
             <div>Preço</div>
           </div>
