@@ -1,0 +1,14 @@
+.pyy{
+    padding:100px;
+}
+
+.imgdef{
+    height: 400px;
+    width: auto;
+}
+
+.df {
+    background-image: url('../../assets/Images/macrame.jpg');
+    background-size: cover;
+}
+  

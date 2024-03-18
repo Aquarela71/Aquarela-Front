@@ -1,0 +1,14 @@
+.imgTitulos{
+    background-image: url('../../assets/Images/sobre6.jpg');
+    background-size: cover;
+    height: 400px;
+}
+
+.img1{
+    width: 600px;
+}
+
+.altura{
+    max-height: 900px;
+    height: 100%;
+}
